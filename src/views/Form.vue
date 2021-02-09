@@ -45,7 +45,11 @@
 		}
 
 		onFormSubmit(): void {
-			this.submitForm().then(() => this.$router.push({ name: 'Success' }));
+			this.submitForm()
+					.then(() => this.$router.push({ name: 'Success' }))
+			.catch(() => {
+				// ideally we would want to display a snackbar or some toast here depending on business logic
+			})
 		}
 
 		destroyed(): void {

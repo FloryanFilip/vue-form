@@ -97,7 +97,7 @@
 		@Prop({type: Boolean, default: false}) loading!: boolean;
 
 		get allFieldsValid(): string | undefined {
-			return this.fullName?.error || this.email?.error || this.phoneNumber?.error;
+			return this.fullName.error || this.email.error || this.phoneNumber.error;
 		}
 
 	}
