@@ -1,0 +1,108 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API endpoint to add persons
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - fullName
+        - email
+        - phone
+      properties:
+        id:
+          type: number
+        fullName:
+          type: string
+          minLength: 3
+          maxLength: 255
+          example: "Adam Nowak"
+        email:
+          type: string
+          maxLength: 255
+          example: "toemail@wp.pl"
+          pattern: '[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}'
+        phone:
+          type: string
+          description: "Phone number in E.164 format"
+          pattern: '^\+?[1-9]\d{5,14}$'
+          example: "+48600200300"
+    ValidationErrorCode:
+      type: string
+      enum:
+        - Validation.Email.BadPattern
+        - Validation.Email.Empty
+        - Validation.Phone.BadPattern
+        - Validation.Phone.Empty
+        - Validation.FullName.Empty
+        - Validation.FullName.ToLong
+        - Validation.FullName.ToShort
+    ConflictErrorCode:
+      type: string
+      enum:
+        - Duplicate.Email
+        - Duplicate.Phone
+    ValidationErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ValidationErrorCode"
+    ConflictErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/ConflictErrorCode"
+    GeneralErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: 'Ooops. Internal Server Error logged with id: lkjnandhwz'
+paths:
+  /person:
+    post:
+      description: Add new person
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Person"
+      responses:
+        "200":
+          description: Added person with id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        "422":
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorResponse"
+        "409":
+          description: Person already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConflictErrorResponse"
+        "400":
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralErrorResponse"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeneralErrorResponse"

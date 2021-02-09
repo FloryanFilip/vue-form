@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateUserFormComponent should match snapshot 1`] = `
+<div class="container">
+  <form class="form">
+    <div class="row">
+      <div class="title">
+        Dodaj nową osobę
+      </div>
+    </div>
+    <div class="row">
+      <app-input-stub type="text" placeholder="Jan Kowalski" value="" data-testid="fullName" class="">
+        Imię i nazwisko
+      </app-input-stub>
+    </div>
+    <div class="row">
+      <app-input-stub type="text" placeholder="jan.kowalski@gmail.com" value="" data-testid="email" class="">
+        Adres Email
+      </app-input-stub>
+    </div>
+    <div class="row">
+      <app-input-stub type="text" placeholder="+48 533-533-533" value="" data-testid="phoneNumber" class="">
+        Telefon kontaktowy
+      </app-input-stub>
+    </div>
+    <div class="row">
+      <app-button-stub type="submit" data-testid="button-submit" class="button-primary button--full-width"><span>Potwierdź</span></app-button-stub>
+      <app-button-stub type="button" data-testid="button-cancel" class="button-secondary button--full-width">Anuluj
+      </app-button-stub>
+    </div>
+  </form>
+</div>
+`;

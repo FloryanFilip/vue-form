@@ -1,0 +1,26 @@
+button {
+	padding: 10px;
+	border-radius: 10px;
+	font-size: 24px;
+	cursor: pointer;
+	border: none;
+
+	&:disabled {
+		pointer-events: none;
+		opacity: 0.6;
+	}
+}
+
+.button--full-width {
+	width: 100%;
+}
+
+.button-primary {
+	background-color: $darken-blue;
+	color: white;
+}
+
+.button-secondary {
+	background-color: $primary-gray;
+	color: $secondary-gray;
+}

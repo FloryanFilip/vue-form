@@ -1,0 +1,14 @@
+@import '~normalize.css';
+@import '~@/styles/_variables.scss';
+@import '~@/styles/buttons.scss';
+
+html {
+	box-sizing: border-box;
+	font-family: Lato, sans-serif;
+	overflow-y: hidden;
+	height: 100%;
+}
+
+body, #app {
+	height: inherit;
+}
