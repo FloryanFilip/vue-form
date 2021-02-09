@@ -10,6 +10,11 @@
     "test:unit": "vue-cli-service test:unit",
     "cy:ui": "npx cypress open"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test:unit && npm run test:e2e"
+    }
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
@@ -31,6 +36,7 @@
     "@vue/cli-plugin-unit-jest": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
     "@vue/test-utils": "^1.0.3",
+    "husky": "^5.0.9",
     "msw": "^0.26.1",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
